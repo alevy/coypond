@@ -31,6 +31,8 @@ while !$*.empty? and $*.first.start_with?("-")
     options[:class] = true
   when "-M"
     options[:module] = true
+  when "-g"
+    options[:gem] = $*.shift
   when "-a"
     options[:all] = true
   end
@@ -38,10 +40,25 @@ end
 
 options[:all] ||= (options.keys & [:class, :method, :module]).empty?
 
-coypond = Coypond::CoypondRunner.new($*)
-results = coypond.search(options)
+def expand(file, pattern=["**"])
+  if File.directory?(file)
+    return Dir.glob(File.join(file, *pattern, '*.rb') )
+  else
+    return file
+  end
+end
 
-results.each do |file_name, res|
+files = []
+if options[:gem]
+  ENV["GEM_PATH"].split(":").each do |path|
+    files += expand(path, ["gems", "#{options[:gem]}*", "**"])
+  end
+else
+  files = $*.map {|file| expand(file)}.flatten
+end
+
+coypond = Coypond::CoypondRunner.new(files)
+coypond.search(options) do |file_name, res|
   unless res.empty?
     puts "#{file_name}:"
     res.each do |dec, location, context|

@@ -21,6 +21,9 @@ module Coypond
           context = source.lines.to_a[location.first - 1]
           final_result[file_name] << [dec, location, context]
         end
+        
+        yield(file_name, final_result[file_name]) if block_given?
+        
       end
       return final_result
     end
@@ -32,7 +35,7 @@ module Coypond
       collection.select do |k,v|
         k = k.downcase if options[:ignore_case]
         if options[:regexp]
-          Regexp.new("#{search_term}$").match(k)
+          Regexp.new("(#{search_term})$").match(k)
         else
           k.end_with?(search_term)
         end
