@@ -5,7 +5,7 @@
 
 Gem::Specification.new do |s|
   s.name = %q{coypond}
-  s.version = "0.1.1"
+  s.version = "0.2.0"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Amit Levy"]
@@ -27,6 +27,7 @@ Gem::Specification.new do |s|
     "Rakefile",
     "VERSION",
     "bin/coypond",
+    "coypond.gemspec",
     "lib/coypond.rb",
     "lib/coypond/parser.rb",
     "test/coypond/test_parser.rb",
