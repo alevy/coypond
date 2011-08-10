@@ -1,5 +1,5 @@
 require 'ripper'
-require File.expand_path('../coypond/parser', __FILE__)
+require 'coypond/parser'
 
 module Coypond
   class CoypondRunner
