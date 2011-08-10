@@ -1,6 +1,32 @@
 = coypond
 
-Description goes here.
+A semantic grep-like tool for Ruby. You can use coypond to search through ruby code for class, module, or method definitions.
+
+== Features:
+
+* Search using raw string or regular expression
+* Narraw search to only module, classes, methods or any combination
+* Search through files, directories, or specify a locally installed gem (using -g option)
+
+== Installation:
+
+From the command line:
+    $ gem install coypond
+
+or, in your Gemfile
+
+    gem 'coypond'
+
+== Examples:
+
+To search for methods, classes or modules named +foo+ in the current directory:
+    $ coypond foo .
+    
+Coypond uses the fully qualified name to index types, so to search the current directory for the +initialize+ method in the +Bar+ class under the +Foo+ module:
+    $ coypond "Foo::Bar#initialize" .
+    
+You can also specify a gem for Coypond to search through using the _-g_ option (Coypond will try to find gems in the Ruby load path):
+    $ coypond "Thumbnail#initialize" -g paperclip
 
 == Contributing to coypond
  
