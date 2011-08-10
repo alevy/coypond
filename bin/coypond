@@ -4,16 +4,23 @@ require 'coypond'
 
 def print_help
   puts "Usage:"
-  puts "  coypond search_term [options] file1 [file2 [file3 [...]]]"
+  puts "  coypond search_term [options] [file1 [file2 [file3 [...]]]]"
   puts ""
   puts "Options:"
-  puts "  -m search method names"
-  puts "  -c search class names"
-  puts "  -M search Module names"
-  puts "  -a search all available type names (default: true unless another search option was given)"
+  puts "  -m:\n    search method names\n\n"
+  puts "  -c:\n    search class names\n\n"
+  puts "  -M:\n    search Module names\n\n"
+  puts "  -a:\n    search all available type names (default: true unless another search option was given)\n\n"
+  puts "  -r:\n    treat the search term as a regular expression\n\n"
+  puts "  -i:\n    ignore case\n\n"
+  puts "  -g [gem name]:\n    look through types in gems beginning with the name specified\n\n"
+  puts ""
+  puts "Examples:"
+  puts "  coypond initialize .\n\n"
+  puts "  coypond \"ActiveRecord.*#validates_.*\" -r -g activerecord\n\n"
 end
 
-if $*.first == "-h" || $*.first == "--help"
+if $*.empty? or $*.first == "-h" or $*.first == "--help"
   print_help
   exit(0)
 end
