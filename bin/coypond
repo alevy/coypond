@@ -50,8 +50,8 @@ end
 
 files = []
 if options[:gem]
-  ENV["GEM_PATH"].split(":").each do |path|
-    files += expand(path, ["gems", "#{options[:gem]}*", "**"])
+  $:.each do |path|
+    files += expand(path, ["#{options[:gem]}*", "**"])
   end
 else
   files = $*.map {|file| expand(file)}.flatten
