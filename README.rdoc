@@ -17,6 +17,13 @@ or, in your Gemfile
 
     gem 'coypond'
 
+If you're using Ruby 1.8.7, you must also install ripper:
+
+    $ gem install ripper
+
+or
+    gem 'ripper'
+
 == Examples:
 
 To search for methods, classes or modules named +foo+ in the current directory:

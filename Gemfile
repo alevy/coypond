@@ -1,7 +1,5 @@
 source "http://rubygems.org"
 
-gem 'ripper', :platforms => :ruby_18
-
 group :development do
   gem "shoulda", ">= 0"
   gem "bundler", "~> 1.0.0"
