@@ -5,7 +5,7 @@ A semantic grep-like tool for Ruby. You can use coypond to search through ruby c
 == Features:
 
 * Search using raw string or regular expression
-* Narraw search to only module, classes, methods or any combination
+* Narrow search to only module, classes, methods or any combination
 * Search through files, directories, or specify a locally installed gem (using -g option)
 
 == Installation:
