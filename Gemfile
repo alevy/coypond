@@ -1,6 +1,6 @@
 source "http://rubygems.org"
 
-
+gem 'ripper', :platforms => :ruby_18
 
 group :development do
   gem "shoulda", ">= 0"

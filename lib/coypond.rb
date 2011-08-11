@@ -13,10 +13,10 @@ module Coypond
       each_file do |file_name, source, parser|
         final_result[file_name] = []
         classes = modules = methods = {}
-        classes = search_in_collection(parser.classes, options) if options[:class] || options[:all]
-        modules = search_in_collection(parser.modules, options) if options[:module] || options[:all]
-        methods = search_in_collection(parser.methods, options) if options[:method] || options[:all]
-        result = classes.merge(modules.merge(methods))
+        classes = search_in_collection(parser.classes, options).to_a if options[:class] || options[:all]
+        modules = search_in_collection(parser.modules, options).to_a if options[:module] || options[:all]
+        methods = search_in_collection(parser.methods, options).to_a if options[:method] || options[:all]
+        result = Hash[classes + modules + methods]
         result.each do |dec, location|
           context = source.lines.to_a[location.first - 1]
           final_result[file_name] << [dec, location, context]

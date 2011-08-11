@@ -49,7 +49,7 @@ options[:all] ||= (options.keys & [:class, :method, :module]).empty?
 
 def expand(file, pattern=["**"])
   if File.directory?(file)
-    return Dir.glob(File.join(file, *pattern, '*.rb') )
+    return Dir.glob(File.join([file, pattern, "*.rb"].flatten) )
   else
     return file
   end
