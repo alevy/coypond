@@ -37,7 +37,7 @@ class TestParser < Test::Unit::TestCase
                                     [:void_stmt]], nil, nil, nil]]]]
     parser = Coypond::Parser.new.parse(parse_tree)
 
-    assert_equal ["Foo", "Baz"], parser.classes.keys
+    assert_equal ["Baz", "Foo"], parser.classes.keys.sort
   end
 
   should "use fully qualified class name in classes instance variable" do
