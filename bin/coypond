@@ -50,15 +50,18 @@ options[:all] ||= (options.keys & [:class, :method, :module]).empty?
 def expand(file, pattern=["**"])
   if File.directory?(file)
     return Dir.glob(File.join([file, pattern, "*.rb"].flatten) )
-  else
+  elsif File.exist?(file)
     return file
+  else
+    return []
   end
 end
 
 files = []
 if options[:gem]
-  $:.each do |path|
-    files += expand(path, ["#{options[:gem]}*", "**"])
+  pattern = ["#{options[:gem]}*", "**"]
+  $:.each_with_index do |path, i|
+    files += expand(path, pattern)
   end
 else
   files = $*.map {|file| expand(file)}.flatten
